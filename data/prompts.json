@@ -39,8 +39,28 @@
       "created_at": "2026-03-16T01:15:55",
       "video_generated": true,
       "views": 0
+    },
+    {
+      "id": "prompt_20260316_012349",
+      "title": "Generador de Prompts para Arte IA",
+      "category": "arte con IA",
+      "level": "principiante",
+      "target_playground": "claude",
+      "prompt_en": "You are a master prompt engineer for AI image generation tools like Midjourney, DALL-E, and Stable Diffusion. I will describe a visual concept. Your job: (1) Generate 5 progressively detailed prompt variations from simple to complex, (2) For each specify recommended tool, aspect ratio, style keywords, lighting, camera angle, and negative prompts, (3) Explain the prompt engineering logic behind your word choices, (4) Suggest 3 artist style references matching the mood, (5) Provide a remix recipe combining the best elements into one ultimate prompt. Format as numbered blocks. My visual concept: [describe what you want to see]",
+      "description_es": "Un experto en prompt engineering para generación de imágenes IA que crea 5 variaciones progresivas con lógica explicada y referencias artísticas.",
+      "narration_es": "¿Quieres crear arte increíble con inteligencia artificial? Este prompt genera cinco variaciones progresivas optimizadas para Midjourney, DALL-E o Stable Diffusion. Te explica la lógica detrás de cada palabra clave y sugiere referencias artísticas para el resultado perfecto.",
+      "tags": [
+        "arte",
+        "IA",
+        "Midjourney",
+        "DALL-E",
+        "prompt engineering"
+      ],
+      "created_at": "2026-03-16T01:23:49",
+      "video_generated": true,
+      "views": 0
     }
   ],
-  "last_updated": "2026-03-16T01:18:10.435655",
-  "total": 2
+  "last_updated": "2026-03-16T01:32:26.529541",
+  "total": 3
 }
