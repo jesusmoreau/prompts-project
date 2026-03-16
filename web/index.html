@@ -3,347 +3,239 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PromptVault — Prompts de IA que Funcionan</title>
+<title>PromptVault</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg-primary: #09090b;
-  --bg-secondary: #111113;
-  --bg-card: #18181b;
-  --bg-card-hover: #1f1f23;
-  --bg-elevated: #27272a;
-  --border: #27272a;
-  --border-hover: #3f3f46;
-  --text-primary: #fafafa;
-  --text-secondary: #a1a1aa;
-  --text-muted: #71717a;
-  --accent: #a78bfa;
-  --accent-glow: rgba(167,139,250,0.15);
-  --success: #34d399;
-  --radius: 16px;
-  --radius-sm: 10px;
-  --radius-xs: 6px;
-}
-* { margin:0; padding:0; box-sizing:border-box; }
-body {
-  background: var(--bg-primary);
-  color: var(--text-primary);
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
-.hero {
-  position: relative;
-  padding: 100px 24px 80px;
-  text-align: center;
-  overflow: hidden;
-}
-.hero::before {
-  content: '';
-  position: absolute;
-  top: -200px; left: 50%; transform: translateX(-50%);
-  width: 800px; height: 800px;
-  background: radial-gradient(circle, rgba(167,139,250,0.08) 0%, transparent 70%);
-  pointer-events: none;
-}
-.hero-badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 6px 16px;
-  background: var(--accent-glow);
-  border: 1px solid rgba(167,139,250,0.2);
-  border-radius: 100px;
-  font-size: 0.8rem; font-weight: 600; color: var(--accent);
-  margin-bottom: 28px;
-  backdrop-filter: blur(12px);
-}
-.hero-badge .dot { width:6px; height:6px; border-radius:50%; background:var(--success); animation: pulse 2s infinite; }
-@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
-.hero h1 {
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
-  font-weight: 900;
-  letter-spacing: -0.03em;
-  line-height: 1.1;
-  margin-bottom: 20px;
-}
-.hero h1 .gradient {
-  background: linear-gradient(135deg, #a78bfa 0%, #818cf8 40%, #6366f1 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.hero-sub {
-  font-size: 1.15rem;
-  color: var(--text-secondary);
-  max-width: 540px;
-  margin: 0 auto 40px;
-}
-.hero-stats { display: flex; justify-content: center; gap: 48px; }
-.hero-stat-num {
-  font-size: 2rem; font-weight: 800; font-variant-numeric: tabular-nums;
-  background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-}
-.hero-stat-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; }
-.filters-wrap {
-  max-width: 900px; margin: 0 auto; padding: 0 24px 40px;
-  display: flex; justify-content: center; flex-wrap: wrap; gap: 8px;
-}
-.filter-chip {
-  padding: 8px 18px; border-radius: 100px; border: 1px solid var(--border);
-  background: transparent; color: var(--text-secondary); font-family: inherit;
-  font-size: 0.85rem; font-weight: 500; cursor: pointer; transition: all 0.2s ease;
-}
-.filter-chip:hover { border-color: var(--border-hover); color: var(--text-primary); background: var(--bg-card); }
-.filter-chip.active { border-color: var(--accent); color: var(--accent); background: var(--accent-glow); }
-.playground-tabs { display: flex; justify-content: center; gap: 12px; margin-bottom: 40px; padding: 0 24px; }
-.pg-tab {
-  display: flex; align-items: center; gap: 8px;
-  padding: 10px 20px; border-radius: var(--radius-sm); border: 1px solid var(--border);
-  background: var(--bg-secondary); color: var(--text-secondary);
-  font-family: inherit; font-size: 0.85rem; font-weight: 500; cursor: pointer; transition: all 0.2s;
-}
-.pg-tab:hover { border-color: var(--border-hover); color: var(--text-primary); }
-.pg-tab.active { border-color: var(--accent); color: var(--accent); background: var(--accent-glow); }
-.pg-dot { width:8px; height:8px; border-radius:50%; display:inline-block; }
-.pg-dot.claude { background:#d97706; }
-.pg-dot.gemini { background:#4285f4; }
-.pg-dot.chatgpt { background:#10a37f; }
-.grid-container { max-width: 1200px; margin: 0 auto; padding: 0 24px 100px; }
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 20px; }
-.card {
-  background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
-  padding: 28px; transition: all 0.3s ease; cursor: pointer; position: relative;
-}
-.card:hover {
-  border-color: var(--border-hover); background: var(--bg-card-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 16px 48px rgba(0,0,0,0.3), 0 0 0 1px rgba(167,139,250,0.05);
-}
-.card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
-.cat-badge {
-  padding: 4px 12px; border-radius: 100px; font-size: 0.7rem;
-  font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;
-}
-.pg-indicator { display: flex; align-items: center; gap: 6px; font-size: 0.75rem; color: var(--text-muted); font-weight: 500; }
-.card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.01em; }
-.card-desc { font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 16px; line-height: 1.55; }
-.card-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
-.card-tag {
-  padding: 3px 10px; border-radius: 100px; font-size: 0.7rem; font-weight: 500;
-  background: rgba(255,255,255,0.04); color: var(--text-muted); border: 1px solid rgba(255,255,255,0.04);
-}
-.card-footer { display: flex; justify-content: space-between; align-items: center; }
-.level-bar { display: flex; gap: 3px; }
-.level-seg { width: 24px; height: 4px; border-radius: 2px; background: var(--bg-elevated); }
-.level-seg.filled { background: var(--accent); }
-.copy-btn {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 10px 20px; border-radius: var(--radius-sm); border: 1px solid var(--accent);
-  background: rgba(167,139,250,0.08); color: var(--accent);
-  font-family: inherit; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease;
-}
-.copy-btn:hover { background: var(--accent); color: var(--bg-primary); }
-.copy-btn.copied { background: var(--success); border-color: var(--success); color: var(--bg-primary); }
-.copy-btn svg { width:16px; height:16px; }
-.modal-overlay {
-  display: none; position: fixed; inset: 0;
-  background: rgba(0,0,0,0.75); backdrop-filter: blur(8px);
-  z-index: 1000; justify-content: center; align-items: center; padding: 24px;
-}
-.modal-overlay.open { display: flex; }
-.modal {
-  background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 20px;
-  max-width: 680px; width: 100%; max-height: 85vh; overflow-y: auto;
-  padding: 40px; position: relative; animation: modalIn 0.25s ease;
-}
-@keyframes modalIn { from{opacity:0;transform:scale(0.95)translateY(10px)} to{opacity:1;transform:none} }
-.modal-close {
-  position: absolute; top: 16px; right: 16px;
-  width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border);
-  background: var(--bg-card); color: var(--text-secondary); font-size: 1.1rem;
-  cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s;
-}
-.modal-close:hover { border-color: var(--border-hover); color: var(--text-primary); }
-.modal-cat {
-  display: inline-block; padding: 4px 14px; border-radius: 100px;
-  font-size: 0.72rem; font-weight: 600; text-transform: uppercase;
-  letter-spacing: 0.5px; margin-bottom: 16px;
-}
-.modal h2 { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 8px; }
-.modal-desc { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 24px; line-height: 1.6; }
-.prompt-box {
-  position: relative; background: var(--bg-primary); border: 1px solid var(--border);
-  border-radius: var(--radius-sm); padding: 24px; margin-bottom: 24px;
-}
-.prompt-box-label {
-  position: absolute; top: -10px; left: 16px; background: var(--bg-primary);
-  padding: 0 8px; font-size: 0.7rem; font-weight: 600; text-transform: uppercase;
-  letter-spacing: 1px; color: var(--accent);
-}
-.prompt-text {
-  font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; line-height: 1.7;
-  color: var(--text-primary); white-space: pre-wrap; word-break: break-word;
-}
-.modal-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
-.meta-chip {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 5px 12px; border-radius: var(--radius-xs);
-  background: var(--bg-card); border: 1px solid var(--border);
-  font-size: 0.75rem; color: var(--text-secondary); font-weight: 500;
-}
-.modal-copy-btn {
-  width: 100%; padding: 14px; border-radius: var(--radius-sm); border: 1px solid var(--accent);
-  background: linear-gradient(135deg, rgba(167,139,250,0.12), rgba(99,102,241,0.12));
-  color: var(--accent); font-family: inherit; font-size: 0.95rem; font-weight: 700;
-  cursor: pointer; transition: all 0.25s ease;
-  display: flex; align-items: center; justify-content: center; gap: 10px;
-}
-.modal-copy-btn:hover {
-  background: var(--accent); color: var(--bg-primary);
-  transform: translateY(-1px); box-shadow: 0 8px 24px rgba(167,139,250,0.25);
-}
-.modal-copy-btn.copied { background: var(--success); border-color: var(--success); color: var(--bg-primary); }
-.toast {
-  position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(80px);
-  padding: 12px 24px; background: var(--bg-card); border: 1px solid var(--success);
-  border-radius: var(--radius-sm); color: var(--success); font-size: 0.85rem; font-weight: 600;
-  display: flex; align-items: center; gap: 8px; z-index: 2000;
-  opacity: 0; transition: all 0.3s ease; pointer-events: none;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-}
-.toast.show { opacity:1; transform: translateX(-50%) translateY(0); }
-.footer {
-  text-align: center; padding: 48px 24px; border-top: 1px solid var(--border);
-  color: var(--text-muted); font-size: 0.85rem;
-}
-.footer a { color: var(--accent); text-decoration: none; font-weight: 500; }
-.footer a:hover { text-decoration: underline; }
-.empty-state { grid-column: 1/-1; text-align: center; padding: 80px 20px; color: var(--text-muted); }
-::-webkit-scrollbar { width:6px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--bg-elevated); border-radius:3px; }
-@media (max-width: 768px) {
-  .hero { padding: 64px 20px 48px; }
-  .hero-stats { gap: 24px; }
-  .grid { grid-template-columns: 1fr; }
-  .modal { padding: 28px; }
-  .playground-tabs { flex-wrap: wrap; }
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#fff;--bg2:#fafafa;--border:#eee;--text:#111;--text2:#666;--text3:#999;--accent:#5e6ad2;--radius:8px}
+body{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antialiased;font-size:15px;line-height:1.6}
+a{color:inherit;text-decoration:none}
+
+/* NAV */
+nav{border-bottom:1px solid var(--border);padding:0 32px;position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(12px)}
+.nav-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:48px}
+.nav-logo{font-size:14px;font-weight:700;letter-spacing:-.02em}
+.nav-logo span{color:var(--accent)}
+.nav-r{display:flex;align-items:center;gap:20px;font-size:13px;color:var(--text2)}
+.nav-r a:hover{color:var(--text)}
+.nav-gh{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border:1px solid var(--border);border-radius:6px;font-size:12px;font-weight:500;transition:border-color .15s}
+.nav-gh:hover{border-color:#ccc}
+.nav-gh svg{width:14px;height:14px}
+
+/* HERO */
+.hero{max-width:960px;margin:0 auto;padding:64px 32px 48px}
+.hero h1{font-size:32px;font-weight:700;letter-spacing:-.03em;line-height:1.15;margin-bottom:12px}
+.hero p{color:var(--text2);font-size:15px;max-width:440px;margin-bottom:28px}
+.hero-meta{display:flex;gap:24px;font-size:13px;color:var(--text3)}
+.hero-meta strong{color:var(--text);font-weight:600}
+
+/* FILTERS */
+.filters{max-width:960px;margin:0 auto;padding:0 32px 24px;display:flex;gap:6px;flex-wrap:wrap}
+.pill{padding:5px 14px;border:1px solid var(--border);border-radius:100px;font-size:12px;font-weight:500;color:var(--text2);background:var(--bg);cursor:pointer;transition:all .15s;font-family:inherit}
+.pill:hover{border-color:#ccc;color:var(--text)}
+.pill.on{background:var(--text);color:#fff;border-color:var(--text)}
+.pill .dot{width:6px;height:6px;border-radius:50%;display:inline-block;margin-right:4px}
+
+/* LIST */
+.list{max-width:960px;margin:0 auto;padding:0 32px 80px}
+.list-header{display:grid;grid-template-columns:1fr 120px 100px 80px;padding:0 0 10px;border-bottom:1px solid var(--border);font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.5px}
+.row{display:grid;grid-template-columns:1fr 120px 100px 80px;align-items:center;padding:14px 0;border-bottom:1px solid var(--border);cursor:pointer;transition:background .1s}
+.row:hover{background:var(--bg2)}
+.row-title{display:flex;flex-direction:column;gap:2px;padding-right:16px}
+.row-name{font-size:14px;font-weight:600;letter-spacing:-.01em}
+.row-desc{font-size:12px;color:var(--text3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row-cat{font-size:12px;color:var(--text2);font-weight:500}
+.row-pg{font-size:12px;color:var(--text2);display:flex;align-items:center;gap:5px}
+.row-copy{padding:5px 12px;border:1px solid var(--border);border-radius:6px;font-size:11px;font-weight:600;color:var(--text2);background:var(--bg);cursor:pointer;font-family:inherit;transition:all .15s}
+.row-copy:hover{border-color:var(--accent);color:var(--accent)}
+.row-copy.ok{border-color:#10b981;color:#10b981}
+
+/* MODAL */
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.3);backdrop-filter:blur(4px);z-index:100;justify-content:center;align-items:flex-start;padding:60px 24px;overflow-y:auto}
+.overlay.open{display:flex}
+.modal{background:var(--bg);border-radius:12px;max-width:580px;width:100%;box-shadow:0 24px 80px rgba(0,0,0,.12);animation:up .2s ease}
+@keyframes up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.modal-head{padding:24px 24px 0;display:flex;justify-content:space-between;align-items:flex-start}
+.modal-close{width:28px;height:28px;border-radius:6px;border:1px solid var(--border);background:var(--bg);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--text2);transition:border-color .15s;flex-shrink:0}
+.modal-close:hover{border-color:#ccc}
+.modal-body{padding:16px 24px 24px}
+.modal-cat{display:inline-block;font-size:11px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.modal h2{font-size:20px;font-weight:700;letter-spacing:-.02em;margin-bottom:4px;line-height:1.25}
+.modal-desc{color:var(--text2);font-size:14px;margin-bottom:20px}
+.modal-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:16px}
+.modal-tag{padding:3px 10px;border-radius:100px;border:1px solid var(--border);font-size:11px;color:var(--text3);font-weight:500}
+.prompt-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:16px;position:relative}
+.prompt-label{position:absolute;top:-8px;left:12px;background:var(--bg2);padding:0 5px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--accent)}
+.prompt-text{font-family:'SF Mono',SFMono-Regular,Menlo,Consolas,monospace;font-size:13px;line-height:1.7;color:var(--text);white-space:pre-wrap;word-break:break-word}
+.modal-cta{width:100%;padding:11px;border-radius:var(--radius);border:none;background:var(--text);color:#fff;font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;transition:opacity .15s;display:flex;align-items:center;justify-content:center;gap:8px}
+.modal-cta:hover{opacity:.85}
+.modal-cta.ok{background:#10b981}
+.modal-cta svg{width:14px;height:14px}
+
+/* EMPTY */
+.empty{text-align:center;padding:48px 20px;color:var(--text3);font-size:14px}
+
+/* TOAST */
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(40px);padding:8px 18px;background:var(--text);color:#fff;border-radius:8px;font-size:13px;font-weight:500;display:flex;align-items:center;gap:6px;z-index:200;opacity:0;transition:all .25s;pointer-events:none}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast svg{width:14px;height:14px}
+
+/* FOOTER */
+footer{text-align:center;padding:32px;border-top:1px solid var(--border);font-size:12px;color:var(--text3)}
+footer a{color:var(--text2)}
+footer a:hover{color:var(--text)}
+
+/* MOBILE CARDS */
+@media(max-width:640px){
+  .list-header{display:none}
+  .row{grid-template-columns:1fr auto;gap:8px;padding:16px 0}
+  .row-cat,.row-pg{display:none}
+  .hero{padding:40px 20px 32px}
+  .hero h1{font-size:24px}
+  .filters,.list{padding-left:20px;padding-right:20px}
+  nav{padding:0 20px}
 }
 </style>
 </head>
 <body>
+
+<nav><div class="nav-inner">
+  <div class="nav-logo">Prompt<span>Vault</span></div>
+  <div class="nav-r">
+    <a href="#list">Prompts</a>
+    <a class="nav-gh" href="https://github.com/jesusmoreau/prompts-project" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+      Star
+    </a>
+  </div>
+</div></nav>
+
 <section class="hero">
-  <div class="hero-badge"><span class="dot"></span> Actualizado diariamente</div>
-  <h1>Prompts que <span class="gradient">funcionan</span></h1>
-  <p class="hero-sub">Colección curada de prompts útiles probados en Claude, Gemini y ChatGPT. Copia, pega y potencia tu productividad.</p>
-  <div class="hero-stats">
-    <div><div class="hero-stat-num" id="sTotal">0</div><div class="hero-stat-label">Prompts</div></div>
-    <div><div class="hero-stat-num" id="sCats">0</div><div class="hero-stat-label">Categorías</div></div>
-    <div><div class="hero-stat-num">3</div><div class="hero-stat-label">Playgrounds</div></div>
+  <h1>Prompts virales de IA,<br>listos para copiar.</h1>
+  <p>Probados en Claude, Gemini y ChatGPT. Copia, pega, y obtén resultados increíbles.</p>
+  <div class="hero-meta">
+    <span><strong id="sT">0</strong> prompts</span>
+    <span><strong id="sC">0</strong> categorías</span>
+    <span><strong>3</strong> playgrounds</span>
   </div>
 </section>
-<div class="playground-tabs" id="pgTabs">
-  <button class="pg-tab active" onclick="filterPg('all',this)">Todos</button>
-  <button class="pg-tab" onclick="filterPg('claude',this)"><span class="pg-dot claude"></span> Claude</button>
-  <button class="pg-tab" onclick="filterPg('gemini',this)"><span class="pg-dot gemini"></span> Gemini</button>
-  <button class="pg-tab" onclick="filterPg('chatgpt',this)"><span class="pg-dot chatgpt"></span> ChatGPT</button>
+
+<div class="filters" id="list">
+  <button class="pill on" onclick="f('all','all',this)">Todos</button>
+  <button class="pill" onclick="f('pg','claude',this)"><span class="dot" style="background:#d97706"></span>Claude</button>
+  <button class="pill" onclick="f('pg','gemini',this)"><span class="dot" style="background:#4285f4"></span>Gemini</button>
+  <button class="pill" onclick="f('pg','chatgpt',this)"><span class="dot" style="background:#10a37f"></span>ChatGPT</button>
+  <span style="width:1px;height:20px;background:var(--border);margin:0 4px"></span>
+  <span id="catPills"></span>
 </div>
-<div class="filters-wrap" id="filters"></div>
-<div class="grid-container"><div class="grid" id="grid"></div></div>
-<div class="modal-overlay" id="modal"><div class="modal" id="modalBody"></div></div>
-<div class="toast" id="toast">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="16" height="16"><path d="M20 6L9 17l-5-5"/></svg>
-  Prompt copiado al portapapeles
+
+<div class="list">
+  <div class="list-header">
+    <span>Prompt</span>
+    <span>Categoría</span>
+    <span>Playground</span>
+    <span></span>
+  </div>
+  <div id="rows"></div>
 </div>
-<footer class="footer">
-  <p>Creado por <a href="https://github.com/jesusmoreau" target="_blank">Jesus Moreau</a> · <a href="https://github.com/jesusmoreau/prompts-project" target="_blank">Ver en GitHub</a></p>
-</footer>
+
+<div class="overlay" id="ov"><div class="modal" id="mb"></div></div>
+<div class="toast" id="toast"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>Copiado</div>
+
+<footer>Creado por <a href="https://github.com/jesusmoreau" target="_blank">Jesus Moreau</a> · <a href="https://github.com/jesusmoreau/prompts-project" target="_blank">GitHub</a></footer>
+
 <script>
-const C={"fitness":"#34d399","productividad":"#60a5fa","escritura creativa":"#c084fc","programación":"#fb923c","cocina":"#f87171","aprender idiomas":"#22d3ee","estudio":"#818cf8","negocios":"#fbbf24","arte con IA":"#f472b6","viajes":"#2dd4bf"};
-const PG={"claude":"Claude","gemini":"Gemini","chatgpt":"ChatGPT"};
-const PGC={"claude":"#d97706","gemini":"#4285f4","chatgpt":"#10a37f"};
-let ALL=[],fCat="all",fPg="all";
+const PG={claude:"Claude",gemini:"Gemini",chatgpt:"ChatGPT"};
+const PGC={claude:"#d97706",gemini:"#4285f4",chatgpt:"#10a37f"};
+let A=[],fType="all",fVal="all";
+
 async function init(){
-  try{const r=await fetch("../data/prompts.json");const d=await r.json();ALL=d.prompts;
-  document.getElementById("sTotal").textContent=d.total;
-  const cats=[...new Set(ALL.map(p=>p.category))];
-  document.getElementById("sCats").textContent=cats.length;
-  renderFilters(cats);render();}catch(e){
-  document.getElementById("grid").innerHTML='<div class="empty-state"><p>Sirve con: <code>python3 -m http.server 8000</code></p></div>';}
+  try{
+    let d;
+    try{const r=await fetch("../data/prompts.json");d=await r.json();}
+    catch(e){const r=await fetch("data/prompts.json");d=await r.json();}
+    A=d.prompts;
+    document.getElementById("sT").textContent=d.total;
+    const cats=[...new Set(A.map(p=>p.category))];
+    document.getElementById("sC").textContent=cats.length;
+    let cp="";cats.forEach(c=>{cp+=`<button class="pill" onclick="f('cat','${c}',this)">${cap(c)}</button>`;});
+    document.getElementById("catPills").innerHTML=cp;
+    render();
+  }catch(e){document.getElementById("rows").innerHTML='<div class="empty">No se pudieron cargar los prompts.</div>';}
 }
-function renderFilters(cats){
-  const c=document.getElementById("filters");
-  let h='<button class="filter-chip active" onclick="filterCat(\'all\',this)">Todas</button>';
-  cats.forEach(cat=>{h+=`<button class="filter-chip" onclick="filterCat('${cat}',this)">${cap(cat)}</button>`;});
-  c.innerHTML=h;
+
+function f(type,val,btn){
+  fType=type;fVal=val;
+  document.querySelectorAll(".filters .pill").forEach(p=>p.classList.remove("on"));
+  btn.classList.add("on");
+  render();
 }
-function filterCat(cat,btn){fCat=cat;document.querySelectorAll(".filter-chip").forEach(b=>b.classList.remove("active"));btn.classList.add("active");render();}
-function filterPg(pg,btn){fPg=pg;document.querySelectorAll(".pg-tab").forEach(b=>b.classList.remove("active"));btn.classList.add("active");render();}
+
 function render(){
-  let list=ALL;
-  if(fCat!=="all")list=list.filter(p=>p.category===fCat);
-  if(fPg!=="all")list=list.filter(p=>p.target_playground===fPg);
-  const g=document.getElementById("grid");
-  if(!list.length){g.innerHTML='<div class="empty-state"><p>No hay prompts con estos filtros.</p></div>';return;}
-  g.innerHTML=list.map(p=>{
-    const col=C[p.category]||"#a78bfa";const pgc=PGC[p.target_playground]||"#a78bfa";
-    const lv=p.level==="principiante"?1:p.level==="intermedio"?2:3;
-    const segs=[1,2,3].map(i=>`<div class="level-seg${i<=lv?" filled":""}"></div>`).join("");
-    const tags=p.tags.slice(0,3).map(t=>`<span class="card-tag">#${t}</span>`).join("");
-    return `<div class="card" onclick="openModal('${p.id}')">
-      <div class="card-top">
-        <span class="cat-badge" style="background:${col}12;color:${col};border:1px solid ${col}30">${cap(p.category)}</span>
-        <span class="pg-indicator"><span class="pg-dot" style="background:${pgc}"></span>${PG[p.target_playground]}</span>
-      </div>
-      <h3>${p.title}</h3>
-      <p class="card-desc">${p.description_es}</p>
-      <div class="card-tags">${tags}</div>
-      <div class="card-footer">
-        <div class="level-bar">${segs}</div>
-        <button class="copy-btn" onclick="event.stopPropagation();copyPrompt('${p.id}',this)">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="16" height="16"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-          Copiar
-        </button>
-      </div>
-    </div>`;}).join("");
+  let l=A;
+  if(fType==="pg")l=l.filter(p=>p.target_playground===fVal);
+  if(fType==="cat")l=l.filter(p=>p.category===fVal);
+  const el=document.getElementById("rows");
+  if(!l.length){el.innerHTML='<div class="empty">No hay prompts con este filtro.</div>';return;}
+  el.innerHTML=l.map(p=>{
+    const pgc=PGC[p.target_playground];
+    return`<div class="row" onclick="openM('${p.id}')">
+      <div class="row-title"><span class="row-name">${p.title}</span><span class="row-desc">${p.description_es}</span></div>
+      <span class="row-cat">${cap(p.category)}</span>
+      <span class="row-pg"><span class="dot" style="background:${pgc}"></span>${PG[p.target_playground]}</span>
+      <button class="row-copy" onclick="event.stopPropagation();cp('${p.id}',this)">Copiar</button>
+    </div>`;
+  }).join("");
 }
-function openModal(id){
-  const p=ALL.find(x=>x.id===id);if(!p)return;
-  const col=C[p.category]||"#a78bfa";const pgc=PGC[p.target_playground]||"#a78bfa";
-  document.getElementById("modalBody").innerHTML=`
-    <button class="modal-close" onclick="closeModal()">&times;</button>
-    <span class="modal-cat" style="background:${col}15;color:${col};border:1px solid ${col}30">${cap(p.category)}</span>
-    <h2>${p.title}</h2>
-    <p class="modal-desc">${p.description_es}</p>
-    <div class="prompt-box">
-      <span class="prompt-box-label">Prompt</span>
-      <div class="prompt-text">${p.prompt_en}</div>
+
+function openM(id){
+  const p=A.find(x=>x.id===id);if(!p)return;
+  const pgc=PGC[p.target_playground];
+  let video="";
+  if(p.video_url){
+    if(p.video_url.includes("youtube")||p.video_url.includes("youtu.be")){
+      const vid=p.video_url.includes("youtu.be")?p.video_url.split("/").pop():new URLSearchParams(new URL(p.video_url).search).get("v");
+      video=`<div style="position:relative;padding-bottom:56.25%;height:0;margin-bottom:16px;border-radius:8px;overflow:hidden"><iframe src="https://www.youtube.com/embed/${vid}" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0" allowfullscreen></iframe></div>`;
+    }else if(p.video_url.includes("tiktok")){
+      video=`<a href="${p.video_url}" target="_blank" style="display:block;padding:10px 14px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;font-size:13px;font-weight:500;margin-bottom:16px">▶ Ver video en TikTok</a>`;
+    }
+  }
+  document.getElementById("mb").innerHTML=`
+    <div class="modal-head">
+      <div>
+        <div class="modal-cat">${cap(p.category)} · <span style="color:var(--text3)">${PG[p.target_playground]}</span></div>
+        <h2>${p.title}</h2>
+      </div>
+      <button class="modal-close" onclick="closeM()">✕</button>
     </div>
-    <div class="modal-meta">
-      <span class="meta-chip"><span class="pg-dot" style="background:${pgc}"></span> ${PG[p.target_playground]}</span>
-      <span class="meta-chip">${cap(p.level)}</span>
-      <span class="meta-chip">${p.created_at.split("T")[0]}</span>
-      ${p.tags.map(t=>`<span class="meta-chip">#${t}</span>`).join("")}
-    </div>
-    <button class="modal-copy-btn" onclick="copyPrompt('${p.id}',this)">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="20" height="20"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-      Copiar Prompt al Portapapeles
-    </button>`;
-  document.getElementById("modal").classList.add("open");
+    <div class="modal-body">
+      <p class="modal-desc">${p.description_es}</p>
+      ${video}
+      <div class="modal-tags">${p.tags.map(t=>`<span class="modal-tag">#${t}</span>`).join("")}<span class="modal-tag">${cap(p.level)}</span></div>
+      <div class="prompt-box"><span class="prompt-label">Prompt</span><div class="prompt-text">${p.prompt_en}</div></div>
+      <button class="modal-cta" onclick="cp('${p.id}',this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        Copiar prompt
+      </button>
+    </div>`;
+  document.getElementById("ov").classList.add("open");
 }
-function closeModal(){document.getElementById("modal").classList.remove("open");}
-document.getElementById("modal").addEventListener("click",function(e){if(e.target===this)closeModal();});
-document.addEventListener("keydown",function(e){if(e.key==="Escape")closeModal();});
-function copyPrompt(id,btn){
-  const p=ALL.find(x=>x.id===id);if(!p)return;
+function closeM(){document.getElementById("ov").classList.remove("open");}
+document.getElementById("ov").addEventListener("click",function(e){if(e.target===this)closeM();});
+document.addEventListener("keydown",function(e){if(e.key==="Escape")closeM();});
+
+function cp(id,btn){
+  const p=A.find(x=>x.id===id);if(!p)return;
   navigator.clipboard.writeText(p.prompt_en).then(()=>{
-    const orig=btn.innerHTML;btn.classList.add("copied");
-    btn.innerHTML=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="16" height="16"><path d="M20 6L9 17l-5-5"/></svg> ¡Copiado!`;
-    showToast();setTimeout(()=>{btn.innerHTML=orig;btn.classList.remove("copied");},2500);
+    const o=btn.innerHTML;
+    btn.classList.add("ok");
+    btn.innerHTML=btn.classList.contains("modal-cta")?'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="14" height="14"><path d="M20 6L9 17l-5-5"/></svg> ¡Copiado!':'✓';
+    toast();
+    setTimeout(()=>{btn.innerHTML=o;btn.classList.remove("ok");},2000);
   });
 }
-function showToast(){const t=document.getElementById("toast");t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2500);}
+function toast(){const t=document.getElementById("toast");t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2000);}
 function cap(s){return s.charAt(0).toUpperCase()+s.slice(1);}
 init();
 </script>

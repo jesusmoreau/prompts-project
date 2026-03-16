@@ -18,7 +18,9 @@
       ],
       "created_at": "2026-03-16T01:07:11",
       "video_generated": true,
-      "views": 0
+      "views": 0,
+      "video_url": "",
+      "thumbnail": "thumbs/prompt_20260316_010711.png"
     },
     {
       "id": "prompt_20260316_011555",
@@ -38,7 +40,9 @@
       ],
       "created_at": "2026-03-16T01:15:55",
       "video_generated": true,
-      "views": 0
+      "views": 0,
+      "video_url": "",
+      "thumbnail": "thumbs/prompt_20260316_011555.png"
     },
     {
       "id": "prompt_20260316_012349",
@@ -58,9 +62,143 @@
       ],
       "created_at": "2026-03-16T01:23:49",
       "video_generated": true,
-      "views": 0
+      "views": 0,
+      "video_url": "",
+      "thumbnail": "thumbs/prompt_20260316_012349.png"
+    },
+    {
+      "id": "prompt_20260316_viral01",
+      "title": "Transformación Pixar 3D — Convierte cualquier foto en personaje animado",
+      "category": "arte con IA",
+      "level": "principiante",
+      "target_playground": "chatgpt",
+      "prompt_en": "Transform this photo into a Pixar-style 3D animated character. Keep the person's exact facial features, hairstyle, and clothing but render everything in the hyper-polished Pixar/Disney animation style. The character should be standing in a simple, clean studio background with soft cinematic lighting. Make the eyes slightly larger and more expressive (Pixar style), smooth the skin texture to match 3D rendering, and add subtle ambient occlusion. The final result should look like an official Pixar movie character poster — vibrant colors, ray-traced reflections, and that signature Pixar warmth. Maintain 100% likeness to the original person. [Upload your photo]",
+      "description_es": "Convierte cualquier foto en un personaje estilo Pixar 3D con los rasgos exactos de la persona. El prompt más viral del momento.",
+      "narration_es": "El prompt más viral de internet en este momento. Sube tu foto y la IA te convierte en un personaje de Pixar con tus rasgos exactos. Funciona increíblemente bien con ChatGPT y crea resultados que parecen sacados de una película real de Disney.",
+      "tags": [
+        "Pixar",
+        "3D",
+        "viral",
+        "transformación",
+        "imagen IA"
+      ],
+      "created_at": "2026-03-16T02:01:43.911624",
+      "video_generated": false,
+      "views": 0,
+      "video_url": "",
+      "thumbnail": "thumbs/prompt_viral01.png"
+    },
+    {
+      "id": "prompt_20260316_viral02",
+      "title": "Action Figure Personalizado — Tu foto en caja de juguete",
+      "category": "arte con IA",
+      "level": "principiante",
+      "target_playground": "chatgpt",
+      "prompt_en": "Create a hyper-realistic product photo of a custom action figure based on this person's photo. The figure should be inside a sealed, clear plastic blister pack with a branded cardboard backing. The packaging should include: the person's name as the toy brand name in bold stylized font at the top, a tagline related to their profession or hobby, and 3-4 miniature accessories that match their personality laid out beside the figure. The action figure itself must perfectly replicate the person's face, hair, outfit, and proportions in 6-inch action figure scale. Professional product photography, studio lighting, slight plastic sheen on the figure. Background: clean white or gradient. Make it look like a real collectible toy you'd find at a store. [Upload photo + name + profession]",
+      "description_es": "Convierte tu foto en un action figure coleccionable dentro de su caja. Ultra viral en redes sociales.",
+      "narration_es": "¿Quieres verte como un muñeco coleccionable? Este prompt crea un action figure personalizado con tu cara, tu ropa y accesorios relacionados con tu profesión. Todo dentro de una caja de juguete realista. Es el contenido perfecto para redes sociales.",
+      "tags": [
+        "action figure",
+        "viral",
+        "personalizado",
+        "imagen IA",
+        "juguete"
+      ],
+      "created_at": "2026-03-16T02:01:43.911632",
+      "video_generated": false,
+      "views": 0,
+      "video_url": "",
+      "thumbnail": "thumbs/prompt_viral02.png"
+    },
+    {
+      "id": "prompt_20260316_viral03",
+      "title": "Studio Ghibli Transformation — Foto a anime Miyazaki",
+      "category": "arte con IA",
+      "level": "principiante",
+      "target_playground": "chatgpt",
+      "prompt_en": "Transform this photo into a Studio Ghibli / Hayao Miyazaki anime art style scene. The person should keep their exact features, clothing, and pose but be redrawn in the signature Ghibli watercolor-meets-cel-animation style. Place them in a dreamy, whimsical Ghibli-inspired environment — lush green hills, floating clouds, warm golden-hour sunlight filtering through trees, or a cozy countryside village. Include subtle Ghibli details: wind gently blowing hair or clothes, tiny magical creatures peeking from behind objects, soft pastel sky gradients. The color palette should be warm and nostalgic with that distinctive Ghibli softness. Maintain full likeness. [Upload your photo]",
+      "description_es": "Transforma tu foto al estilo anime de Studio Ghibli con fondos mágicos al estilo Miyazaki. Trending global.",
+      "narration_es": "Otro prompt súper viral. Transforma cualquier foto al estilo Studio Ghibli de Hayao Miyazaki. La IA mantiene tus rasgos pero te redibuja con ese estilo anime acuarela tan icónico, con fondos mágicos llenos de detalles encantadores.",
+      "tags": [
+        "Ghibli",
+        "anime",
+        "Miyazaki",
+        "viral",
+        "transformación"
+      ],
+      "created_at": "2026-03-16T02:01:43.911634",
+      "video_generated": false,
+      "views": 0,
+      "video_url": "",
+      "thumbnail": "thumbs/prompt_viral03.png"
+    },
+    {
+      "id": "prompt_20260316_viral04",
+      "title": "LinkedIn Profile Headshot Profesional con IA",
+      "category": "productividad",
+      "level": "principiante",
+      "target_playground": "chatgpt",
+      "prompt_en": "Transform this casual photo into a premium, corporate LinkedIn headshot. The person should look polished and professional while maintaining 100% facial likeness. Apply these changes: dress them in a well-fitted dark navy or charcoal business blazer with a crisp white shirt underneath, professional grooming with neat hair styling, perfect skin (remove blemishes but keep natural), confident and approachable slight smile. Background: soft blurred gradient (navy to light blue) typical of professional studio headshots. Lighting: Rembrandt lighting setup with a soft key light from 45 degrees, gentle fill light, and subtle rim light to separate from background. Final look: Fortune 500 executive headshot quality. [Upload your photo]",
+      "description_es": "Convierte cualquier selfie en una foto profesional de LinkedIn nivel ejecutivo. Ahorra cientos de dólares en fotógrafo.",
+      "narration_es": "¿Necesitas una foto profesional para LinkedIn pero no quieres pagar un fotógrafo? Este prompt transforma cualquier selfie en un headshot corporativo de nivel ejecutivo. Con iluminación de estudio, traje profesional y fondo perfecto.",
+      "tags": [
+        "LinkedIn",
+        "profesional",
+        "headshot",
+        "viral",
+        "productividad"
+      ],
+      "created_at": "2026-03-16T02:01:43.911636",
+      "video_generated": false,
+      "views": 0,
+      "video_url": "",
+      "thumbnail": "thumbs/prompt_viral04.png"
+    },
+    {
+      "id": "prompt_20260316_viral05",
+      "title": "Generador de Logos Profesionales desde Cero",
+      "category": "negocios",
+      "level": "intermedio",
+      "target_playground": "claude",
+      "prompt_en": "Act as a world-class brand identity designer from a top agency like Pentagram or Wolff Olins. I need you to design a complete logo concept for my brand. Here are the details:\n\nBrand name: [YOUR BRAND NAME]\nIndustry: [YOUR INDUSTRY]\nTarget audience: [DESCRIBE YOUR AUDIENCE]\nBrand personality: [e.g., modern, playful, luxury, minimal, bold]\nPreferred colors: [or say 'surprise me']\n\nDeliver:\n1. THREE distinct logo concepts — each with a different design direction (wordmark, icon+text, abstract mark)\n2. For each concept provide: the SVG code I can use directly, color hex codes, font recommendation (from Google Fonts), the design rationale explaining symbolism and psychology behind choices\n3. A mini brand guide: primary/secondary colors, do's and don'ts for logo usage, recommended background combinations\n4. Mockup suggestions: describe how each logo would look on a business card, website header, and social media avatar\n\nMake the designs clean, modern, and scalable. Think Apple, Stripe, Linear level of design quality.",
+      "description_es": "Un diseñador de identidad de marca nivel agencia top que crea 3 conceptos de logo con SVG, guía de marca y mockups.",
+      "narration_es": "¿Necesitas un logo profesional sin pagar miles a una agencia? Este prompt actúa como un diseñador de Pentagram y te entrega tres conceptos de logo completos con código SVG listo para usar, paleta de colores, tipografía y hasta una mini guía de marca.",
+      "tags": [
+        "logo",
+        "branding",
+        "diseño",
+        "negocios",
+        "SVG"
+      ],
+      "created_at": "2026-03-16T02:01:43.911637",
+      "video_generated": false,
+      "views": 0,
+      "video_url": "",
+      "thumbnail": "thumbs/prompt_viral05.png"
+    },
+    {
+      "id": "prompt_20260316_viral06",
+      "title": "Crea tu Propio GPT Personalizado — Instrucciones Completas",
+      "category": "programación",
+      "level": "avanzado",
+      "target_playground": "chatgpt",
+      "prompt_en": "You are an expert GPT builder and prompt engineer. I want to create a custom GPT (for ChatGPT's GPT Builder) that serves as: [DESCRIBE YOUR GPT'S PURPOSE, e.g., 'a personal Spanish tutor that adapts to my level']\n\nGenerate the complete configuration:\n\n1. **Name & Description**: A catchy name and compelling 1-line description that would make people want to try it\n2. **System Instructions**: Write the complete, production-ready system prompt (500-1000 words) that defines the GPT's personality, capabilities, rules, and behavior. Include: role definition, tone of voice, step-by-step interaction flow, edge case handling, output formatting rules, and guardrails\n3. **Conversation Starters**: 4 engaging starter prompts that showcase the GPT's best capabilities\n4. **Knowledge Files Needed**: List what documents/data I should upload to make this GPT smarter\n5. **Actions (API)**: Suggest any external APIs that would enhance this GPT, with endpoint descriptions\n6. **Monetization Strategy**: How to position this GPT in the GPT Store for maximum visibility\n\nMake the system prompt sophisticated — use XML tags for structure, include few-shot examples, and add self-correction mechanisms.",
+      "description_es": "Genera la configuración completa para crear tu propio GPT personalizado: instrucciones, starters, knowledge files y estrategia de monetización.",
+      "narration_es": "¿Quieres crear tu propio GPT personalizado y hasta venderlo en la GPT Store? Este prompt genera toda la configuración: el system prompt profesional, los conversation starters, qué archivos subir, qué APIs conectar y hasta una estrategia de monetización.",
+      "tags": [
+        "GPT",
+        "custom GPT",
+        "programación",
+        "automatización",
+        "monetización"
+      ],
+      "created_at": "2026-03-16T02:01:43.911639",
+      "video_generated": false,
+      "views": 0,
+      "video_url": "",
+      "thumbnail": "thumbs/prompt_viral06.png"
     }
   ],
-  "last_updated": "2026-03-16T01:32:26.529541",
-  "total": 3
+  "last_updated": "2026-03-16T02:01:43.912604",
+  "total": 9
 }
