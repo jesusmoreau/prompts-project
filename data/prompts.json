@@ -19,8 +19,28 @@
       "created_at": "2026-03-16T01:07:11",
       "video_generated": true,
       "views": 0
+    },
+    {
+      "id": "prompt_20260316_011555",
+      "title": "Sistema GTD con Priorización Inteligente",
+      "category": "productividad",
+      "level": "intermedio",
+      "target_playground": "chatgpt",
+      "prompt_en": "Act as a productivity consultant who uses the Getting Things Done (GTD) methodology combined with the Eisenhower Matrix. I will give you a brain dump of all my pending tasks, commitments, and ideas. Your job is to: (1) Capture and clarify each item into actionable next steps, (2) Organize them into the four Eisenhower quadrants (Urgent+Important, Important+Not Urgent, Urgent+Not Important, Neither), (3) For each task, estimate time needed and suggest the best time block in a typical workday, (4) Identify tasks that can be delegated or eliminated entirely. Present the final output as a structured weekly action plan in a table format with columns: Task | Quadrant | Time Estimate | Suggested Time Block | Notes. Here is my brain dump: [paste your tasks here]",
+      "description_es": "Combina el método GTD con la Matriz de Eisenhower para organizar todas tus tareas pendientes en un plan de acción semanal estructurado.",
+      "narration_es": "¿Tienes la cabeza llena de tareas pendientes? Este prompt combina dos métodos de productividad poderosos para organizar todo tu caos mental. Solo haz un volcado de todas tus tareas y la IA las organiza en un plan semanal con prioridades claras.",
+      "tags": [
+        "productividad",
+        "GTD",
+        "Eisenhower",
+        "organización",
+        "planificación"
+      ],
+      "created_at": "2026-03-16T01:15:55",
+      "video_generated": true,
+      "views": 0
     }
   ],
-  "last_updated": "2026-03-16T01:12:13.904663",
-  "total": 1
+  "last_updated": "2026-03-16T01:18:10.435655",
+  "total": 2
 }
